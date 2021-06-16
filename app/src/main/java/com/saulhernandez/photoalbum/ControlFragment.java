@@ -66,10 +66,11 @@ public class ControlFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_control, container, false);
         btnNext = (Button) view.findViewById(R.id.btnNext);
+        MainActivity thisListener = new MainActivity();
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                thisListener.onButtonClick(btnNext);
             }
         });
         return view;
