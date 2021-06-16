@@ -44,6 +44,9 @@ public class PictureFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mImageID = getArguments().getInt(ARG_IMAGE_ID);
+        } else {
+            // error in case no argument was given for picture
+            mImageID = R.drawable.ic_error_outline;
         }
     }
 
@@ -52,7 +55,7 @@ public class PictureFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_picture, container, false);
-        ImageView imageView = view.findViewById(R.id.fragmentContainerPhoto);
+        ImageView imageView = view.findViewById(R.id.imageView);
         imageView.setImageResource(mImageID);
         return view;
     }
