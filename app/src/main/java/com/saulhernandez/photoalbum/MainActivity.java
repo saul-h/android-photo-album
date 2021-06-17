@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
     int imagePosition = 0;
     TextView textView;
     ArrayList<Fragment> animalFragments;
-    //Button stopSlide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
     @Override
     public void onButtonPressed(String msg) {
 
-
+        //if user press next, then move to the next fragment in the list
         if(msg.equals("next")){
             if(imagePosition == 5){
                 imagePosition = -1;
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
             transaction.addToBackStack(null);
             transaction.commit();
 
-        }else if(msg.equals("prev")){
+        }else if(msg.equals("prev")){ //likewise if user press prev, the more the previous fragment in the list
 
             // previous picture
             if(imagePosition == 0) {
