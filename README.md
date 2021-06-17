@@ -9,7 +9,10 @@ UI layouts
 
 PictureFragment
 
-
 Chan:
 
 ControlFragment
+- Map previous and next buttons to the fragments and set actions on onClick()
+Slideshow
+- Map slideshows UI to the second thread, which map to the fragments
+OnButtonPressListener Interface
