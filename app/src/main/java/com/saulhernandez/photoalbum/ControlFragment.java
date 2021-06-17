@@ -107,7 +107,6 @@ public class ControlFragment extends Fragment {
     @Override
     public void onAttach(Context contex){
         super.onAttach(contex);
-
         buttonListener =  (onButtonPressListener)getActivity();
 
     }
