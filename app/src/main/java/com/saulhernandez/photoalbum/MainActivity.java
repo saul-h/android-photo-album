@@ -89,6 +89,35 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
                 startActivity(intent);
             }
         });
+        startThread();
 
+    }
+    public void startThread() {
+        SlideThread runnable = new SlideThread(6);
+        new Thread(runnable).start();
+    }
+
+    class SlideThread implements Runnable{
+        int seconds;
+
+        SlideThread(int seconds){
+            this.seconds = seconds;
+        }
+
+        @Override
+        public void run() {
+            textView.setText("Running Slideshow");
+            for(int i = 0; i < seconds; i++){
+                try {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(i));//display image by image position
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                    Thread.sleep(1000);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,7 @@ public class ControlFragment extends Fragment {
                     btnPrev.setVisibility(View.INVISIBLE);
                     btnNext.setVisibility(View.INVISIBLE);
                     buttonListener.onButtonPressed("slide");
+
                 }else{
                     btnPrev.setVisibility(View.VISIBLE);
                     btnNext.setVisibility(View.VISIBLE);
