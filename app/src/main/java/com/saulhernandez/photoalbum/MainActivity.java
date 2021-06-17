@@ -50,11 +50,12 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
 
         //if user press next, then move to the next fragment in the list
         if(msg.equals("next")){
-            if(imagePosition == 5){
+            if(imagePosition == animalFragments.size() - 1){
                 imagePosition = -1;
             }
             imagePosition = imagePosition + 1;
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
             // display image by image position
             transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));
             transaction.addToBackStack(null);
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
 
             // previous picture
             if(imagePosition == 0) {
-                imagePosition = 6;
+                imagePosition = animalFragments.size();
             }
             imagePosition = imagePosition - 1;
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
             //create slideshow
             runSlideShow();
         }
-        textView.setText(String.valueOf(imagePosition + 1 +"/6"));
+        textView.setText(String.valueOf(imagePosition + 1 +"/" + animalFragments.size()));
     }
 
     void runSlideShow(){
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
         @Override
         public void run() {
             textView.setText("Running Slideshow");
-            for(int i = 0; i < seconds; i++){
+            for(int i = 0; i < seconds; i++) {
                 try {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     //display image by image position
