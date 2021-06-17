@@ -1,5 +1,6 @@
 package com.saulhernandez.photoalbum;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +16,9 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class ControlFragment extends Fragment {
-
+    //View view;
+    Button btnNext, btnPrev;
+    onButtonPressListener buttonListener;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -56,6 +59,28 @@ public class ControlFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_control, container, false);
+        //view = inflater.inflate(R.layout.fragment_control, container, false);
+        ViewGroup  view = (ViewGroup) inflater.inflate(R.layout.fragment_control, container, false);
+
+        btnNext = (Button) view.findViewById(R.id.btnNext);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonListener.onButtonPressed("next");
+            }
+        });
+
+        btnNext = (Button) view.findViewById(R.id.btnPrev);
+
+        return view;
+    }
+
+    @Override
+    public void onAttach(Context contex){
+        super.onAttach(contex);
+
+        buttonListener =  (onButtonPressListener)getActivity();
+
     }
 }
