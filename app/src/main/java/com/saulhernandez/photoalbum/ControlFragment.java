@@ -23,14 +23,6 @@ public class ControlFragment extends Fragment {
     Button btnNext, btnPrev;
     onButtonPressListener buttonListener;
     CheckBox slideShow;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    // TODO: Rename and change types of parameters
-
-/*
-    public Button btnNext, btnPrev;
-*/
 
     public ControlFragment() {
         // Required empty public constructor
@@ -55,8 +47,6 @@ public class ControlFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-/*        btnNext = getView().findViewById(R.id.btnNext);
-        btnPrev = getView().findViewById(R.id.btnPrev);*/
     }
 
     @Override
@@ -69,22 +59,13 @@ public class ControlFragment extends Fragment {
         //create buttons/slideshow and set on click listener
         //on click, invoke the onButtonPressed() from the mainActivity
         btnNext = (Button) view.findViewById(R.id.btnNext);
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonListener.onButtonPressed("next");
-            }
-        });
+        btnNext.setOnClickListener(v -> buttonListener.onButtonPressed("next"));
 
         btnPrev = (Button) view.findViewById(R.id.btnPrev);
-        btnPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonListener.onButtonPressed("prev");
-            }
-        });
+        btnPrev.setOnClickListener(v -> buttonListener.onButtonPressed("prev"));
 
-        slideShow =(CheckBox) view.findViewById(R.id.chkBoxSlideShow);
+        slideShow = (CheckBox) view.findViewById(R.id.chkBoxSlideShow);
+
         slideShow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -109,6 +90,5 @@ public class ControlFragment extends Fragment {
         super.onAttach(contex);
 
         buttonListener =  (onButtonPressListener)getActivity();
-
     }
 }
