@@ -4,7 +4,10 @@ This Android Application is a photo viewing app. It uses a fragment to display t
 Contributions:
 
 Saul
+
 UI layouts
+
 PictureFragment
+
 
 Chan
