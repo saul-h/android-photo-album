@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
     int imagePosition = 0;
     TextView textView;
     ArrayList<Fragment> animalFragments;
-    Button stopSlide;
+    //Button stopSlide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,15 +80,16 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
     }
 
     void runSlideShow(){
+        /*
         stopSlide = findViewById(R.id.stopSlide);
-        stopSlide.setVisibility(View.VISIBLE);
+        //stopSlide.setVisibility(View.VISIBLE);
         stopSlide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         startThread();
 
     }
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
         new Thread(runnable).start();
     }
 
+    //Create a seperate thread to run the slideshow
     class SlideThread implements Runnable{
         int seconds;
 
