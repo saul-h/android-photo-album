@@ -71,7 +71,14 @@ public class ControlFragment extends Fragment {
             }
         });
 
-        btnNext = (Button) view.findViewById(R.id.btnPrev);
+        btnPrev = (Button) view.findViewById(R.id.btnPrev);
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonListener.onButtonPressed("prev");
+            }
+        });
+
 
         return view;
     }

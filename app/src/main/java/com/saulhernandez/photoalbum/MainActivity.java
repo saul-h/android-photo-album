@@ -44,20 +44,35 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
     @Override
     public void onButtonPressed(String msg) {
 
-        //textView.setText(String.valueOf(imagePosition) + "/5");
+
         if(msg.equals("next")){
+            if(imagePosition == 5){
+                imagePosition = -1;
+            }
             imagePosition = imagePosition + 1;
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));//display image by image position
             transaction.addToBackStack(null);
             transaction.commit();
+
             //imagePosition++;
-            if(imagePosition == 5){
-                imagePosition = 0;
-            }
+
 
         }else if(msg.equals("prev")){
             //previous picture
+            if(imagePosition == 0) {
+                imagePosition = 6;
+            }
+            imagePosition = imagePosition - 1;
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));//display image by image position
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+
         }
+
+
+        textView.setText(String.valueOf(imagePosition));
     }
 }
