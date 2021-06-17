@@ -34,6 +34,7 @@ public class PictureFragment extends Fragment {
     public static PictureFragment newInstance(int imageID) {
         PictureFragment fragment = new PictureFragment();
         Bundle args = new Bundle();
+        // passing imageID to bundle
         args.putInt(ARG_IMAGE_ID, imageID);
         fragment.setArguments(args);
         return fragment;
@@ -45,7 +46,7 @@ public class PictureFragment extends Fragment {
         if (getArguments() != null) {
             mImageID = getArguments().getInt(ARG_IMAGE_ID);
         } else {
-            // error in case no argument was given for picture
+            // error image in case no argument was given for picture
             mImageID = R.drawable.ic_error_outline;
         }
     }
