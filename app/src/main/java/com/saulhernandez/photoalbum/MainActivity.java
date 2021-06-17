@@ -1,7 +1,10 @@
 package com.saulhernandez.photoalbum;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
     int imagePosition = 0;
     TextView textView;
     ArrayList<Fragment> animalFragments;
+    Button stopSlide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +59,8 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
             transaction.addToBackStack(null);
             transaction.commit();
 
-            //imagePosition++;
-
-
         }else if(msg.equals("prev")){
+
             //previous picture
             if(imagePosition == 0) {
                 imagePosition = 6;
@@ -70,9 +72,23 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
             transaction.commit();
 
 
+        } else if(msg.equals("slide")){
+            //create slideshow
+            runSlideShow();
         }
+        textView.setText(String.valueOf(imagePosition + 1 +"/6"));
+    }
 
+    void runSlideShow(){
+        stopSlide = findViewById(R.id.stopSlide);
+        stopSlide.setVisibility(View.VISIBLE);
+        stopSlide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        textView.setText(String.valueOf(imagePosition));
     }
 }

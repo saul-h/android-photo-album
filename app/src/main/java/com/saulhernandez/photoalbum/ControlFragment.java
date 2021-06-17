@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +21,7 @@ public class ControlFragment extends Fragment {
     //View view;
     Button btnNext, btnPrev;
     onButtonPressListener buttonListener;
+    CheckBox slideShow;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -62,8 +65,9 @@ public class ControlFragment extends Fragment {
         //view = inflater.inflate(R.layout.fragment_control, container, false);
         ViewGroup  view = (ViewGroup) inflater.inflate(R.layout.fragment_control, container, false);
 
+        //create buttons/slideshow and set on click listener
+        //on click, invoke the onButtonPressed() from the mainActivity
         btnNext = (Button) view.findViewById(R.id.btnNext);
-
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +83,21 @@ public class ControlFragment extends Fragment {
             }
         });
 
+        slideShow =(CheckBox) view.findViewById(R.id.chkBoxSlideShow);
+        slideShow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    btnPrev.setVisibility(View.INVISIBLE);
+                    btnNext.setVisibility(View.INVISIBLE);
+                    buttonListener.onButtonPressed("slide");
+                }else{
+                    btnPrev.setVisibility(View.VISIBLE);
+                    btnNext.setVisibility(View.VISIBLE);
+                    buttonListener.onButtonPressed("stop_slide");
+                }
+            }
+        });
 
         return view;
     }
