@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
         animalFragments.add(PictureFragment.newInstance(R.drawable.tiger));
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));//display image by image position
+        // display image by image position
+        transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -49,24 +50,27 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
 
         //if user press next, then move to the next fragment in the list
         if(msg.equals("next")){
-            if(imagePosition == 5){
+            if(imagePosition == animalFragments.size() - 1){
                 imagePosition = -1;
             }
             imagePosition = imagePosition + 1;
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));//display image by image position
+
+            // display image by image position
+            transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));
             transaction.addToBackStack(null);
             transaction.commit();
 
         }else if(msg.equals("prev")){ //likewise if user press prev, the more the previous fragment in the list
 
-            //previous picture
+            // previous picture
             if(imagePosition == 0) {
-                imagePosition = 6;
+                imagePosition = animalFragments.size();
             }
             imagePosition = imagePosition - 1;
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));//display image by image position
+            // display image by image position
+            transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(imagePosition));
             transaction.addToBackStack(null);
             transaction.commit();
 
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
             //create slideshow
             runSlideShow();
         }
-        textView.setText(String.valueOf(imagePosition + 1 +"/6"));
+        textView.setText(String.valueOf(imagePosition + 1 +"/" + animalFragments.size()));
     }
 
     void runSlideShow(){
@@ -87,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
         new Thread(runnable).start();
     }
 
-    //Create a seperate thread to run the slideshow
+    // Create a seperate thread to run the slideshow
     class SlideThread implements Runnable{
         int seconds;
 
@@ -98,10 +102,11 @@ public class MainActivity extends AppCompatActivity implements onButtonPressList
         @Override
         public void run() {
             textView.setText("Running Slideshow");
-            for(int i = 0; i < seconds; i++){
+            for(int i = 0; i < seconds; i++) {
                 try {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(i));//display image by image position
+                    //display image by image position
+                    transaction.replace(R.id.fragmentContainerPhoto, animalFragments.get(i));
                     transaction.addToBackStack(null);
                     transaction.commit();
                     Thread.sleep(1000);
